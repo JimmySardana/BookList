@@ -36,8 +36,6 @@ def top_books(categorie='Alle Kategorien'):
     else:
         if request.args.get('categorie'):
             categorie = request.args.get('categorie')
-            for key in categories.keys():
-                print(key)
             return redirect(url_for('views.top_books', categorie=categorie))
     
         return render_template("top_books.html", user=current_user, books=get_books(categories[categorie]), categories=categories.keys(), categorie=categorie)
