@@ -1,0 +1,43 @@
+{% extends "base.html" %}{% block title %}Find Book!{% endblock %} {% block
+content %}
+
+<div class="form-container" id="select">
+  <form method="GET">
+    <label for="categorie">Kategorie: </label>
+    <select name="categorie" id="categorie" onchange="this.form.submit()">
+      {% for categorie_ in categories %}
+      <option {% if categorie == categorie_ %} selected {% endif %}>{{categorie_}}</option>
+      {% endfor %}
+    </select>
+  </form>
+</div>
+
+<section>
+
+  <div class="books-container">
+    {% for book in books %}
+    <div class="book-wrapper">
+      <div class="img-wrapper">
+        <img src="{{book['image']}}" alt="" />
+      </div>
+      <div class="book-info">
+        <span
+        ><div class="title" title="{{book['title']}}">
+          {{book['title']}}
+          </div></span
+          >
+          <span class="author">{{book['author']}}</span>
+        </div>
+        <form method="POST" class="buttons-wrapper">
+          <a href="{{book['link']}}" class="info">Info/Buy</a>
+          <button type="submit" class="add" name="add" value="{{book['title'] + '\n' + book['author'] + '\n' + book['link'] + '\n' + book['image']}}">
+            Add To List
+          </button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+    
+    {% endblock %}
+    

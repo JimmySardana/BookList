@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %} Login {% endblock %} {% block
+content %}
+<div class="form-container">
+  <h2 class="{% if not has_created %} hide {% endif %}">Account Created!</h2>
+  <form method="POST" id="form-login">
+    <div class="input-container">
+      <input
+        class="email {% if not valid_email %} input-error {% endif %}"
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email Address"
+        value="{{email_value}}"
+      />
+      <span class="email error-icon {% if valid_email %} hide {% endif %}"
+        ><img src="../static/images/icon-error.svg" alt="error-icon"
+      /></span>
+      <div class="email error-message">
+        {% if not valid_email %} Email doesn't exist {% endif %}
+      </div>
+    </div>
+    <div class="input-container">
+      <input
+        class="password {% if not valid_pass %} input-error {% endif %}"
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+      />
+      <span class="password error-icon {% if valid_pass %} hide {% endif %}"
+        ><img src="../static/images/icon-error.svg" alt="error-icon"
+      /></span>
+      <div class="password error-message">
+        {% if not valid_pass %} Wrong password. {% endif %}
+      </div>
+    </div>
+    <button type="submit">Login</button>
+    <div class="create-account">
+      or <a href="/sign-up">create an account</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

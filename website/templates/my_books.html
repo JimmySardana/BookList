@@ -1,0 +1,29 @@
+{% extends "base.html" %}{% block title %}Find Book!{% endblock %} {% block
+content %}
+<section>
+  <div class="books-container">
+    {% for book in books %}
+    <div class="book-wrapper">
+      <div class="img-wrapper">
+        <img src="{{book['image']}}" alt="" />
+      </div>
+      <div class="book-info">
+        <span
+          ><div class="title" title="{{book['title']}}">
+            {% if book['title']|length > 60 %} {{book['title'][:60] + '...'}} {%
+            else %} {{book['title']}} {% endif %}
+          </div></span
+        >
+        <span class="author">{{book['author']}}</span>
+      </div>
+      <form method="POST" class="buttons-wrapper">
+        <a href="{{book['link']}}" class="info">Info/Buy</a>
+        <button type="submit" class="add" name="del" value="{{book['id']}}">
+          Remove From List
+        </button>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

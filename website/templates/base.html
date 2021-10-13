@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../static/images/favicon-32x32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{% block title %}Base{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles.css')}}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="navbar-container">
+        <div class="nav-menu">
+          {% if user.is_authenticated %}
+          <div class="nav-items grow">
+            <a
+              id="top-books"
+              href="{{url_for('views.top_books', categorie='Alle Kategorien')}}"
+              class="nav-links"
+              >Top Books</a
+            >
+          </div>
+          <div class="nav_items">
+            <a id="my-books" href="/my-books" class="nav-links">My Books</a>
+          </div>
+          <div class="nav_items">
+            <a id="logout" href="logout" class="nav-links">Logout</a>
+          </div>
+          {% else %}
+          <div class="nav-items grow">
+            <a id="home" href="/" class="nav-links">Home</a>
+          </div>
+          <div class="nav-items">
+            <a id="login" href="/login" class="nav-links">Login</a>
+          </div>
+          <div class="nav-items">
+            <a id="sign-up" href="/sign-up" class="nav-links">Sign Up</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+  </body>
+</html>

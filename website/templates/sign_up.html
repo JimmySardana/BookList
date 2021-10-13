@@ -1,0 +1,140 @@
+{% extends "base.html" %} {% block title %} Sign Up {% endblock %} {% block
+content %}
+<div class="form-container">
+  <form method="POST" id="form-signup">
+    <div class="input-container">
+      <input
+        class="
+          username
+          {%
+          if
+          not
+          validity['username']
+          %}
+          input-error
+          {%
+          endif
+          %}
+        "
+        name="username"
+        id="username"
+        type="text"
+        placeholder="Username"
+        value="{{ values['username'] }}"
+      />
+      <span
+        class="
+          username
+          error-icon
+          {%
+          if
+          validity['username']
+          %}
+          hide
+          {%
+          endif
+          %}
+        "
+        ><img src="../static/images/icon-error.svg" alt="error-icon"
+      /></span>
+      <div class="username error-message">
+        {% if not validity['username'] %} {{error_msg['username']}} {% endif %}
+      </div>
+    </div>
+    <div class="input-container">
+      <input
+        class="email {% if not validity['email'] %} input-error {% endif %}"
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email Address"
+        value="{{ values['email'] }}"
+      />
+      <span class="email error-icon {% if validity['email'] %} hide {% endif %}"
+        ><img src="../static/images/icon-error.svg" alt="error-icon"
+      /></span>
+      <div class="email error-message">
+        {% if not validity['email'] %} {{error_msg['email']}} {% endif %}
+      </div>
+    </div>
+    <div class="input-container">
+      <input
+        class="
+          password
+          {%
+          if
+          not
+          validity['password']
+          %}
+          input-error
+          {%
+          endif
+          %}
+        "
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+      />
+      <span
+        class="
+          password
+          error-icon
+          {%
+          if
+          validity['password']
+          %}
+          hide
+          {%
+          endif
+          %}
+        "
+        ><img src="../static/images/icon-error.svg" alt="error-icon"
+      /></span>
+      <div class="password error-message">
+        {% if not validity['password'] %} {{error_msg['password']}} {% endif %}
+      </div>
+    </div>
+    <div class="input-container">
+      <input
+        class="
+          password
+          {%
+          if
+          not
+          validity['confirm_password']
+          %}
+          input-error
+          {%
+          endif
+          %}
+        "
+        type="password"
+        id="confirm-password"
+        name="confirm-password"
+        placeholder="Confirm Password"
+      />
+      <span
+        class="
+          password
+          error-icon
+          {%
+          if
+          validity['confirm_password']
+          %}
+          hide
+          {%
+          endif
+          %}
+        "
+        ><img src="../static/images/icon-error.svg" alt="error-icon"
+      /></span>
+      <div class="password error-message">
+        {% if not validity['confirm_password'] %} {{error_msg['password']}} {%
+        endif %}
+      </div>
+    </div>
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+{% endblock %}
