@@ -107,7 +107,7 @@ def sign_up():
         new_user = User(email = email, username=username, password=generate_password_hash(password, method='sha256'))
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('auth.login', has_created=True))
+        return redirect(url_for('auth.login'))
 
     return render_template("sign_up.html", validity=validity, error_msg=error_msg, values=values, user=current_user)
 
